@@ -25,15 +25,10 @@ LIB_PATH = ':'.join((SPIDERMONKEY_LIB,
 os.environ['LD_LIBRARY_PATH'] = LIB_PATH
 
 
-def spidermonkey(code=None, script_file=None, input_code=None, strict=False,
-                 warnings=None, compile_only=False):
+def spidermonkey(code=None, script_file=None, strict=False, warnings=None,
+                 compile_only=False):
 
     cmd = [SPIDERMONKEY]
-
-    if code is not None:
-        cmd.extend(('-e', code))
-    if script_file is not None:
-        cmd.extend(('-f', script_file))
 
     if warnings is True:
         cmd.append('--warnings')
@@ -44,15 +39,15 @@ def spidermonkey(code=None, script_file=None, input_code=None, strict=False,
         cmd.append('--strict')
 
     if compile_only:
+        assert code is None, '`compile_only` may not be used with `code`'
         cmd.append('--compileonly')
+
+    if code is not None:
+        cmd.extend(('-e', code))
+    if script_file is not None:
+        cmd.extend(('-f', script_file))
 
     proc = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE,
                             stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
-    outputs = proc.communicate(input_code)
-
-    class Result(object):
-        stdout = outputs[0]
-        stderr = outputs[1]
-        returncode = proc.returncode
-    return Result
+    return proc

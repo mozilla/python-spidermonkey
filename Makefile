@@ -38,7 +38,7 @@ purge.%: phony
 	cd $(PLATFORM_LIB) && rm -f *
 
 
-build: $(ARCHS:%=build.%)
+build: $(ARCHS:%=build.%) sdist
 clean: $(ARCHS:%=clean.%)
 
 build.linux-x86_64: PYTHON_PLATFORM=linux-x86_64
@@ -48,10 +48,13 @@ clean.mac: PYTHON_PLATFORM=macosx-$(MACOSX_VERSION)-intel
 
 build.%: clean.%
 	_PYTHON_HOST_PLATFORM=$(PYTHON_PLATFORM) \
-	$(SETUP) bdist_wheel
+	$(SETUP) bdist_wheel $(UPLOAD)
 
 clean.%: phony
 	_PYTHON_HOST_PLATFORM=$(PYTHON_PLATFORM) \
 	$(SETUP) clean --all
+
+sdist:
+	$(SETUP) sdist
 
 .PHONY: help phony build clean download purge
