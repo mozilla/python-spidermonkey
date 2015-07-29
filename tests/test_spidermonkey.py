@@ -1,12 +1,12 @@
 import pytest
 
-from spidermonkey import spidermonkey
+from spidermonkey import Spidermonkey
 
 
 def test_command_line_code():
     """Test that command line code is executed."""
 
-    proc = spidermonkey(code='print("Hello")')
+    proc = Spidermonkey(code='print("Hello")')
     stdout, stderr = proc.communicate()
 
     assert (stdout, stderr) == ('Hello\n', '')
@@ -16,7 +16,7 @@ def test_command_line_code():
 def test_script_file():
     """Test that a script file is executed as expected."""
 
-    proc = spidermonkey(script_file='-')
+    proc = Spidermonkey(script_file='-')
     stdout, stderr = proc.communicate('print("World")')
 
     assert (stdout, stderr) == ('World\n', '')
@@ -27,7 +27,7 @@ def test_compileonly():
     """Test that compileonly returns a status but no output."""
 
     # Valid code: no output, returns 0.
-    proc = spidermonkey(compile_only=True, script_file='-')
+    proc = Spidermonkey(compile_only=True, script_file='-')
     stdout, stderr = proc.communicate('print("Hello")')
 
     assert not stdout
@@ -35,7 +35,7 @@ def test_compileonly():
     assert proc.returncode == 0
 
     # Invalid code: only stderr output, returns > 0.
-    proc = spidermonkey(compile_only=True, script_file='-')
+    proc = Spidermonkey(compile_only=True, script_file='-')
     stdout, stderr = proc.communicate('print("Hello"')
 
     assert stdout == ''
@@ -45,4 +45,4 @@ def test_compileonly():
     # The compile-only flag is not applied to code passed on the
     # command line, so it should not be accepted.
     with pytest.raises(AssertionError):
-        spidermonkey(compile_only=True, code="print('Hello')")
+        Spidermonkey(compile_only=True, code="print('Hello')")

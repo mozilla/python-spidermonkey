@@ -2,4 +2,5 @@ import os
 import sys
 
 def pytest_configure():
-    sys.path.insert(0, os.path.abspath(os.curdir))
+    path = os.path.abspath(os.path.basename(__file__))
+    sys.path.insert(0, path)
