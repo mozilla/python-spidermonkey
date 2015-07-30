@@ -24,6 +24,9 @@ setup(
                 'and a Python utility module to run it.',
     url='https://github.com/kmaglione/python-spidermonkey/',
     license='MPLv2',
+    install_requires=[
+        'setuptools',
+    ],
     packages=['spidermonkey'],
     package_data={
         'spidermonkey': package_data,
