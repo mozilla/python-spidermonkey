@@ -27,10 +27,21 @@ LIB_PATH = ':'.join((SPIDERMONKEY_LIB,
 os.environ['LD_LIBRARY_PATH'] = LIB_PATH
 
 
+def maybe_iterable(val):
+    if isinstance(val, basestring):
+        return val,
+    elif val is None:
+        return ()
+    return val
+
+
 class Spidermonkey(subprocess.Popen):
-    def __init__(self, code=None, script_file=None, compile_only=False,
-                 strict=False, warnings=None, stdin=subprocess.PIPE,
-                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kw):
+
+    def __init__(self, code=None, early_script_file=None, script_file=None,
+                 compile_only=False, strict=False, warnings=None,
+                 script_args=(), extra_flags=(),
+                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                 stderr=subprocess.PIPE, **kw):
 
         cmd = [SPIDERMONKEY]
 
@@ -46,10 +57,24 @@ class Spidermonkey(subprocess.Popen):
             assert code is None, '`compile_only` may not be used with `code`'
             cmd.append('--compileonly')
 
-        if code is not None:
-            cmd.extend(('-e', code))
-        if script_file is not None:
-            cmd.extend(('-f', script_file))
+        for script in maybe_iterable(code):
+            cmd.extend(('-e', script))
+
+        for script in maybe_iterable(early_script_file):
+            cmd.extend(('-f', script))
+
+        if extra_flags:
+            cmd.extend(extra_flags)
+
+        if script_file:
+            cmd.append(script_file)
+        elif script_args:
+            # Arguments come after the script name, so if we have args without
+            # an explicit script, we need a fake script.
+            cmd.append('/dev/null')
+
+        if script_args:
+            cmd.extend(script_args)
 
         super(Spidermonkey, self).__init__(cmd, stdin=stdin, stdout=stdout,
                                            stderr=stderr, **kw)
