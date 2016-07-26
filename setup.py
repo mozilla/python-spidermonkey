@@ -22,7 +22,7 @@ setup(
     author_email='addons-team@mozilla.com',
     description='A standalone executable Spidermonkey JavaScript shell, '
                 'and a Python utility module to run it.',
-    url='https://github.com/kmaglione/python-spidermonkey/',
+    url='https://github.com/mozilla/python-spidermonkey/',
     license='MPLv2',
     install_requires=[
         'setuptools',
