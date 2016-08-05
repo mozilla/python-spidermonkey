@@ -4,14 +4,14 @@ python:
   - '2.7'
 install:
   - pip install pytest
-  - make download
-  - python setup.py install
 script:
   - py.test
+before_deploy: make download
 deploy:
   provider: pypi
-  user: marketplacedevsinternal
+  server: https://testpypi.python.org/pypi
+  user: wagnerand
   password:
-    secure: kYcPvTPRAPw4lXKgHqEPQr/df6+MppYn30u4POo/uciefp7362FP/88KU4fV87fo+6gwFuHktsVtCiYAOmQp/d0ajhqLv3ZIDGYr9kesFl5CtRuh/LDsx1Matasm0BKDepqY02r9eMJV0FweB9Lpz0vw79Ow6cgU2CH7f9GfgY4=
+    secure: 4LK2oV0Llo7BlFk/d0LifRydXFqAktsoHXuTfbelcwkJq9Bnh2AyBZolYQJFP0c2kN0400DFxMqFkS5Vm8aMeUXh1Wj6F2Cmzb0tBA5SjTdynzhXVW3fPcU+u4MkMIJoognDftRp0gUmA8yl5+ESgrqoVpk8jVvdFm2PuPmC66YTvpaHtgHwPUNREF03vozqsXwGXw8LryK7O1jVyJZnETmP4NFXeEbTUo2O+lwGAlZbGEkXqzXGQN0nF8ov3JDN0hLlvinS3K95md9isXUdfVf0yspHx9WRCUWgFsIN3uUrKGA3+TaEToiJdJbiR9GB4Ifi0o7gLBSx/djaGP9dfdqSfTRjv5TqirMY/dRfh1GCpU1wPLt/gQr1w9evAL5F9ZsMAA3BtyK4+YU5LVIuvYL3g2lkK8Acm81bCm8yHWPW9rzo0MgV4hecnv3xIKxshHM5R5KSJlBoLVWHUPnft6ePI0Ui6Jv2XfWSOtsAOh78B4K/KyDYvwgnb/72VOl4CrtEGcvdi0KxOxc7FZfs4D0opxypqpiziUs+/9uPclnLZEKewWP6GFt1hAORu6zv2K7q5omYtjIjDPKMTb/N1efrxWLuURSpQ8adAfYGaB/6WNwtpjpmzUrTV7lbsOaXSB0XaC+JqRXJkTIm5wDN1JSlstFmu/JPbMW/3Fd2jnM=
   on:
     tags: true
