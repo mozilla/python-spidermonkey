@@ -1,17 +1,18 @@
 language: python
 sudo: false
 python:
-  - '2.7'
+- '2.7'
 install:
-  - pip install pytest
-  - make download
-  - python setup.py install
+- pip install pytest
+- make download
+- python setup.py install
 script:
-  - py.test
+- py.test
 deploy:
   provider: pypi
-  user: marketplacedevsinternal
+  user: EnTeQuAk
   password:
-    secure: kYcPvTPRAPw4lXKgHqEPQr/df6+MppYn30u4POo/uciefp7362FP/88KU4fV87fo+6gwFuHktsVtCiYAOmQp/d0ajhqLv3ZIDGYr9kesFl5CtRuh/LDsx1Matasm0BKDepqY02r9eMJV0FweB9Lpz0vw79Ow6cgU2CH7f9GfgY4=
+    secure: f5YHM+ei3CmqTo0mf2YZDbBUi1JLG4rRAJkN3xjqqk9bE1vkYm2fiZPNd6mmj225948GhkZv15ZYjMSJ/2L0Wp2a8gcQs85D8I38xYOic4ROE/ZVa90LNM0sD8MMIkKgPu2rBBYJY2oC6I4VqEysApaqu4JqMGIKiXoc+qX7UChftE4DBiaivF9ineXsoCqeJhfleAhUlOIEEfOjMMzGrU1PHTw4r2DFMnwOSt1dh69mvFvyactf2mizxlUY9goSSw5rGm6ztSj3ffTLLXmo3okRfvXHEiByPCRoOCISokda1uKiAqwqzfuH5APoGMezlfRJKWpmqdy96nALHxBiOg69LxwjqhwzBVSNvf8uY20JTWnNVyaA3EDxPpzX7MjbFB7umalyPCGhKFY2y/S76ViUEuWPieLVL7gaWl1pjE6zZwPdjZyvV7hvcflc79uSfw5dXClSreVw0o+yzsS2rfHURz+FwLdM53ZAUkqc8UbteFmEjzjj0mPYFlxNQEmmMsz52cT5qxoiYCfdG6U/wFyWOl31VL4MX1KyGLK+jg+N3SB3NS8cjDngTE1XDM8SvgWI4AGOF5sPiqXBRDYIe4MG3yu3rVKMwMPD5WS/AeeyRoX/02UQODkb1zNrKkWfk+iFRaXXjhjkUm3JcQ3j9Dl9MbyyrdT5wU6fFfPxM20=
   on:
     tags: true
+  distributions: "sdist"
