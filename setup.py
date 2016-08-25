@@ -3,10 +3,9 @@ from distutils.util import get_platform
 from setuptools import setup
 
 
-if get_platform() == 'linux-x86_64':
-    package_data = ['lib/linux/js', 'lib/linux/*.so']
-else:
-    package_data = ['lib/os-x/js', 'lib/os-x/*.dylib']
+package_data = [
+    'lib/linux/js', 'lib/linux/*.so', 'lib/os-x/js', 'lib/os-x/*.dylib'
+]
 
 
 class Distribution(setuptools.Distribution):
