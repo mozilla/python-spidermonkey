@@ -32,11 +32,6 @@ setup(
     },
     distclass=Distribution,
     platforms=['linux-x86_64', 'macos-10.10-intel'],
-    options={
-        'build': {
-            'build_base': 'build/build.%s' % get_platform(),
-        },
-    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
