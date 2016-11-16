@@ -4,7 +4,7 @@ WGET ?= wget
 PYTHON ?= python2
 SETUP ?= $(PYTHON) setup.py
 
-MACOSX_VERSION ?= 10.10
+MACOSX_VERSION ?= 10.12
 
 ARCHIVE_NAME = jsshell-$(PLATFORM_NAME).zip
 DOWNLOAD_URL = https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora/$(ARCHIVE_NAME)
