@@ -1,5 +1,4 @@
 import setuptools
-from distutils.util import get_platform
 from setuptools import setup
 
 
