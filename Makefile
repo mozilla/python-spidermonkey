@@ -7,7 +7,7 @@ SETUP ?= $(PYTHON) setup.py
 MACOSX_VERSION ?= 10.12
 
 ARCHIVE_NAME = jsshell-$(PLATFORM_NAME).zip
-DOWNLOAD_URL = https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora/$(ARCHIVE_NAME)
+DOWNLOAD_URL = https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central/$(ARCHIVE_NAME)
 
 LIB_DIR = spidermonkey
 ARCHS = linux-x86_64 mac
