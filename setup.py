@@ -15,7 +15,7 @@ class Distribution(setuptools.Distribution):
 
 setup(
     name='spidermonkey',
-    version='58.0a1.post1',
+    version='58.0a1.post2',
     author='Mozilla Corporation',
     author_email='addons-team@mozilla.com',
     description='A standalone executable Spidermonkey JavaScript shell, '
