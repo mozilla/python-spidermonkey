@@ -9,6 +9,7 @@ install:
 script:
 - py.test
 deploy:
+  skip_cleanup: true
   provider: pypi
   user: EnTeQuAk
   password:
